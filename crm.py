@@ -28,8 +28,7 @@ class CRM:
         elif input_number == 4:
             self.display_all_contacts()
         elif input_number == 5:
-            # search by attribute
-            pass
+            self.search_by_attribute()
         elif input_number == 6:
             quit()
 
@@ -68,9 +67,20 @@ class CRM:
 
     def display_all_contacts(self):
         Contact.all()
-#
-# def search_by_attribute(self):
+
+    def search_by_attribute(self):
+        print("What attribute would you like to search by?")
+        search_field = input()
+        while search_field not in ['first_name', 'last_name', 'email', 'note']:
+            print("Please enter a valid field to change.")
+            search_field = input()
+        print("What value would you like to search by?")
+        search_value = input()
+        result = Contact.find_by(search_field, search_value)
+        if result is not False:
+            print("The following contact matches your search criteria:")
+            print(result)
 
 
-thing = CRM()
-thing.main_menu()
+a_crm_app = CRM()
+a_crm_app.main_menu()
