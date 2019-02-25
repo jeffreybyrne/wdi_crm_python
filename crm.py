@@ -47,14 +47,22 @@ class CRM:
         print("Which contact do you want to modify?")
         search_id = int(input())
         print("What field do you wish to change?")
-        field_change = input()
-        while field_change not in ['first_name', 'last_name', 'email', 'note']:
-            print("Please enter a valid field to change.")
-            field_change = input()
+        print("[1] First Name")
+        print("[2] Last Name")
+        print("[3] Email Address")
+        print("[4] Notes")
+        field_change = int(input())
         print("What value do you want to change it to?")
         updated_value = input()
         contact_to_update = Contact.find(search_id)
-        contact_to_update.update(field_change, updated_value)
+        if field_change == 1:
+            contact_to_update.update("first_name", updated_value)
+        elif field_change == 2:
+            contact_to_update.update("last_name", updated_value)
+        elif field_change == 3:
+            contact_to_update.update("email", updated_value)
+        elif field_change == 4:
+            contact_to_update.update("note", updated_value)
         print("This contact has been updated:")
         print(contact_to_update)
 

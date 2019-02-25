@@ -99,7 +99,7 @@ class Contact:
         Contact.contacts.remove(self)
 
     def __str__(self):
-        return "This contact is {} {}, email address is {} and they have the note \"{}\"".format(self.first_name, self.last_name, self.email, self.note)
+        return "#{}: {} {}, email address is {}. They have the note \"{}\"".format(self.id, self.first_name, self.last_name, self.email, self.note)
 
 # contact1 = Contact.create('Betty', 'Maker', 'bettymakes@bitmakerlabs.com', 'Loves Pokemon')
 # contact2 = Contact.create('Bit', 'Bot', 'bitbot@bitmakerlabs.com', 'beep boop')
