@@ -46,9 +46,20 @@ class Contact:
         """
         if update_field not in ['first_name', 'last_name', 'email', 'note']:
             return False
-        else:
-            self.update_field = update_value
+        elif update_field == 'first_name':
+            self.first_name = update_value
             return True
+        elif update_field == 'last_name':
+            self.last_name = update_value
+            return True
+        elif update_field == 'email':
+            self.email = update_value
+            return True
+        elif update_field == 'note':
+            self.note = update_value
+            return True
+        else:
+            return False
 
     @classmethod
     def find_by(cls, search_field, search_value):

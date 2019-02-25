@@ -30,8 +30,19 @@ class CRM:
             new_note = input()
             Contact.create(new_first_name, new_last_name, new_email, new_note)
         elif input_number == 2:
-            # update contact
-            pass
+            print("Which contact do you want to modify?")
+            search_id = int(input())
+            print("What field do you wish to change?")
+            field_change = input()
+            while field_change not in ['first_name', 'last_name', 'email', 'note']:
+                print("Please enter a valid field to change.")
+                field_change = input()
+            print("What value do you want to change it to?")
+            updated_value = input()
+            contact_to_update = Contact.find(search_id)
+            contact_to_update.update(field_change, updated_value)
+            print("This contact has been updated:")
+            print(contact_to_update)
         elif input_number == 3:
             # delete a contact
             pass
