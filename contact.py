@@ -24,7 +24,9 @@ class Contact:
     @classmethod
     def all(cls):
         """This method should return all of the existing contacts"""
-        return cls.contacts
+        for num in range(0, len(cls.contacts)):
+            print(cls.contacts[num])
+        # cls.contacts = []
 
     @classmethod
     def find(cls, input_id):
@@ -85,6 +87,8 @@ class Contact:
         """
         Contact.contacts.remove(self)
 
+    def __str__(self):
+        return "This contact is {} {}, email address is {} and they have the note \"{}\"".format(self.first_name, self.last_name, self.email, self.note)
 
 # contact1 = Contact.create('Betty', 'Maker', 'bettymakes@bitmakerlabs.com', 'Loves Pokemon')
 # contact2 = Contact.create('Bit', 'Bot', 'bitbot@bitmakerlabs.com', 'beep boop')
