@@ -26,17 +26,26 @@ class Contact:
         """This method should return all of the existing contacts"""
 
     @classmethod
-    def find(cls):
+    def find(cls, input_id):
         """ This method should accept an id as an argument
         and return the contact who has that id
         """
+        for num in range(0, len(Contact.contacts)):
+            if Contact.contacts[num].id == input_id:
+                return Contact.contacts[num]
+        return False
 
-    def update(self):
+    def update(self, update_field, update_value):
         """ This method should allow you to specify
         1. which of the contact's attributes you want to update
         2. the new value for that attribute
         and then make the appropriate change to the contact
         """
+        if update_field not in ['first_name', 'last_name', 'email', 'note']:
+            return False
+        else:
+            self.update_field = update_value
+            return True
 
     @classmethod
     def find_by(cls):
@@ -67,3 +76,8 @@ contact2 = Contact.create('Bit', 'Bot', 'bitbot@bitmakerlabs.com', 'beep boop')
 print(len(Contact.contacts))
 print(contact1.id)
 print(contact2.id)
+print(Contact.find(1))
+print(Contact.find(2))
+print(Contact.find(3))
+print(contact1.update('first_name', 'Jeff'))
+print(contact2.update('flirst_name', 'Jeff'))
