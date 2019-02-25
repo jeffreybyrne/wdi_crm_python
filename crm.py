@@ -44,8 +44,11 @@ class CRM:
             print("This contact has been updated:")
             print(contact_to_update)
         elif input_number == 3:
-            # delete a contact
-            pass
+            print("Which contact do you want to delete?")
+            delete_contact = int(input())
+            curr_contact = Contact.find(delete_contact)
+            curr_contact.delete()
+            print("This contact has been deleted.")
         elif input_number == 4:
             # display_all_contacts
             Contact.all()
