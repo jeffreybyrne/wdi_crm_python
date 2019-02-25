@@ -2,12 +2,15 @@ class Contact:
 
     contacts = []
     next_id = 1
+
     def __init__(self, new_f_name, new_l_name, new_email, new_note):
         """This method should initialize the contact's attributes"""
         self.first_name = new_f_name
         self.last_name = new_l_name
         self.email = new_email
         self.note = new_note
+        self.id = Contact.next_id
+        Contact.next_id += 1
 
     @classmethod
     def create(cls, new_f_name, new_l_name, new_email, new_note):
@@ -16,7 +19,7 @@ class Contact:
         """
         new_contact = Contact(new_f_name, new_l_name, new_email, new_note)
         Contact.contacts.append(new_contact)
-        Contact.next_id += 1
+        return new_contact
 
     @classmethod
     def all(cls):
@@ -58,5 +61,9 @@ class Contact:
         """
 
     # Feel free to add other methods here, if you need them.
-contact = Contact.create('Betty', 'Maker', 'bettymakes@bitmakerlabs.com', 'Loves Pokemon')
-print(Contact.contacts[0])
+contact1 = Contact.create('Betty', 'Maker', 'bettymakes@bitmakerlabs.com', 'Loves Pokemon')
+contact2 = Contact.create('Bit', 'Bot', 'bitbot@bitmakerlabs.com', 'beep boop')
+
+print(len(Contact.contacts))
+print(contact1.id)
+print(contact2.id)
