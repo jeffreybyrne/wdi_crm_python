@@ -20,55 +20,54 @@ class CRM:
 
     def call_option(self, input_number):
         if input_number == 1:
-            print("What is the first name of the new contact?")
-            new_first_name = input()
-            print("What is the last name of the new contact?")
-            new_last_name = input()
-            print("What is the email address of the new contact?")
-            new_email = input()
-            print("Enter a note for this contact:")
-            new_note = input()
-            Contact.create(new_first_name, new_last_name, new_email, new_note)
+            self.add_new_contact()
         elif input_number == 2:
-            print("Which contact do you want to modify?")
-            search_id = int(input())
-            print("What field do you wish to change?")
-            field_change = input()
-            while field_change not in ['first_name', 'last_name', 'email', 'note']:
-                print("Please enter a valid field to change.")
-                field_change = input()
-            print("What value do you want to change it to?")
-            updated_value = input()
-            contact_to_update = Contact.find(search_id)
-            contact_to_update.update(field_change, updated_value)
-            print("This contact has been updated:")
-            print(contact_to_update)
+            self.modify_existing_contact()
         elif input_number == 3:
-            print("Which contact do you want to delete?")
-            delete_contact = int(input())
-            curr_contact = Contact.find(delete_contact)
-            curr_contact.delete()
-            print("This contact has been deleted.")
+            self.delete_contact()
         elif input_number == 4:
-            # display_all_contacts
-            Contact.all()
+            self.display_all_contacts()
         elif input_number == 5:
             # search by attribute
             pass
         elif input_number == 6:
             quit()
 
+    def add_new_contact(self):
+        print("What is the first name of the new contact?")
+        new_first_name = input()
+        print("What is the last name of the new contact?")
+        new_last_name = input()
+        print("What is the email address of the new contact?")
+        new_email = input()
+        print("Enter a note for this contact:")
+        new_note = input()
+        Contact.create(new_first_name, new_last_name, new_email, new_note)
 
-# def add_new_contact(self):
-#
-#
-# def modify_existing_contact(self):
-#
-#
-# def delete_contact(self):
-#
-#
-# def display_all_contacts(self):
+    def modify_existing_contact(self):
+        print("Which contact do you want to modify?")
+        search_id = int(input())
+        print("What field do you wish to change?")
+        field_change = input()
+        while field_change not in ['first_name', 'last_name', 'email', 'note']:
+            print("Please enter a valid field to change.")
+            field_change = input()
+        print("What value do you want to change it to?")
+        updated_value = input()
+        contact_to_update = Contact.find(search_id)
+        contact_to_update.update(field_change, updated_value)
+        print("This contact has been updated:")
+        print(contact_to_update)
+
+    def delete_contact(self):
+        print("Which contact do you want to delete?")
+        delete_contact = int(input())
+        curr_contact = Contact.find(delete_contact)
+        curr_contact.delete()
+        print("This contact has been deleted.")
+
+    def display_all_contacts(self):
+        Contact.all()
 #
 # def search_by_attribute(self):
 
