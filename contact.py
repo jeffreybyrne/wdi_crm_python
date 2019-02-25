@@ -24,6 +24,7 @@ class Contact:
     @classmethod
     def all(cls):
         """This method should return all of the existing contacts"""
+        return cls.contacts
 
     @classmethod
     def find(cls, input_id):
@@ -81,3 +82,4 @@ print(Contact.find(2))
 print(Contact.find(3))
 print(contact1.update('first_name', 'Jeff'))
 print(contact2.update('flirst_name', 'Jeff'))
+print(Contact.all())
