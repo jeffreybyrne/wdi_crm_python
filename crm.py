@@ -52,9 +52,8 @@ class CRM:
         new_email = input()
         print("Enter a note for this contact:")
         new_note = input()
-        new_contact = Contact.create(first_name=new_first_name, last_name=new_last_name, email=new_email, notes=new_note)
+        Contact.create(first_name=new_first_name, last_name=new_last_name, email=new_email, note=new_note)
         # new_contact = Contact.create(new_first_name, new_last_name, new_email, new_note)
-        print("A new contact has been added.\n{}".format(new_contact))
 
     def modify_existing_contact(self):
         """This method prompts the user to enter a contact number to update
@@ -71,17 +70,20 @@ class CRM:
         field_change = int(input())
         print("What value do you want to change it to?")
         updated_value = input()
-        contact_to_update = Contact.find(search_id)
+        contact_to_update = Contact.get(id=search_id)
         if field_change == 1:
-            contact_to_update.update("first_name", updated_value)
+            contact_to_update.first_name = updated_value
+            contact_to_update.save()
         elif field_change == 2:
-            contact_to_update.update("last_name", updated_value)
+            contact_to_update.last_name = updated_value
+            contact_to_update.save()
         elif field_change == 3:
-            contact_to_update.update("email", updated_value)
+            contact_to_update.email = updated_value
+            contact_to_update.save()
         elif field_change == 4:
-            contact_to_update.update("note", updated_value)
+            contact_to_update.note = updated_value
+            contact_to_update.save()
         print("This contact has been updated:")
-        print(contact_to_update)
 
     def delete_contact(self):
         """This method asks the user which contact they want to delete, and
@@ -89,7 +91,7 @@ class CRM:
         """
         print("Which contact do you want to delete?")
         delete_contact = int(input())
-        curr_contact = Contact.find(delete_contact)
+        curr_contact = Contact.get(id=delete_contact)
         curr_contact.delete()
         print("This contact has been deleted.")
 
@@ -112,13 +114,13 @@ class CRM:
         print("What value would you like to search by?")
         search_value = input()
         if search_field == 1:
-            result = Contact.find_by('first_name', search_value)
+            result = Contact.get(first_name=search_value)
         elif search_field == 2:
-            result = Contact.find_by('last_name', search_value)
+            result = Contact.get(last_name=search_value)
         elif search_field == 3:
-            result = Contact.find_by('email', search_value)
+            result = Contact.find_by(email=search_value)
         elif search_field == 4:
-            result = Contact.find_by('note', search_value)
+            result = Contact.find_by(note=search_value)
         if result is not False:
             print("The following contact matches your search criteria:")
             print(result)

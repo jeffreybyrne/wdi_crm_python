@@ -7,7 +7,7 @@ class Contact(Model):
     first_name = CharField()
     last_name = CharField()
     email = CharField()
-    notes = TextField()
+    note = TextField()
 
     class Meta:
         database = db
