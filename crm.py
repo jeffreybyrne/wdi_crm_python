@@ -92,13 +92,14 @@ class CRM:
         print("Which contact do you want to delete?")
         delete_contact = int(input())
         curr_contact = Contact.get(id=delete_contact)
-        curr_contact.delete()
+        curr_contact.delete_instance()
         print("This contact has been deleted.")
 
     def display_all_contacts(self):
         """This method lists all contacts.
         """
-        Contact.all()
+        for contact in Contact.select():
+            print("This contact is {} {}, email address {} with note \"{}\"".format(contact.first_name, contact.last_name, contact.email, contact.note))
 
     def search_by_attribute(self):
         """This method asks the user which field they wish to search by, then
@@ -123,7 +124,7 @@ class CRM:
             result = Contact.find_by(note=search_value)
         if result is not False:
             print("The following contact matches your search criteria:")
-            print(result)
+            print("This contact is {} {}, email address {} with note \"{}\"".format(result.first_name, result.last_name, result.email, result.note))
         else:
             print("There are no contacts that match your query.")
 
