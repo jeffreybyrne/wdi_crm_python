@@ -4,4 +4,4 @@
 *.swo
 __pycache__/
 .gitignore
-crm.db
+*.db
